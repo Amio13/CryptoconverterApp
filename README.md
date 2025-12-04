@@ -71,3 +71,9 @@ export default defineConfig([
   },
 ])
 ```
+### NEXT STEPS
+- Switch from dummy data from Coingecko or Coinmarketcap Api call - Done
+- Make the app to not load everytime it Is navigated except on an event that neccesary
+using react optimization hooks -
+- Add dark Mode - Done
+- Make this app to be mobile responsive -
