@@ -153,12 +153,12 @@ const displayRate = useMemo(() => {
         {isReady && (
           <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
             <h2 className="text-sm font-semibold uppercase text-gray-500 dark:text-gray-400 mb-3">Converted Result</h2>
-            <div className="bg-yellow-50 dark:bg-gray-700 p-6 rounded-2xl border border-yellow-200 dark:border-gray-600">
+            <div className="bg-yellow-50 dark:bg-gray-700 p-6 rounded-2xl border border-yellow-200  dark:border-gray-600">
               <div className="text-lg text-gray-600 dark:text-gray-300">
                 {amount ?? 0} {fromSymbol} equals:
               </div>
               <div className="mt-2 flex items-baseline space-x-2">
-                <span className="text-4xl font-extrabold text-yellow-800 dark:text-yellow-400 font-mono">
+                <span className="text-4xl  truncate font-extrabold text-yellow-800 dark:text-yellow-400 font-mono block max-w-full overflow-hidden text-ellipsis whitespace-nowrap">
                   {convertedAmount.toFixed(5).replace(/\.?0+$/, "")}
                 </span>
                 <span className="text-2xl font-bold text-yellow-600 dark:text-yellow-300">{toSymbol}</span>
