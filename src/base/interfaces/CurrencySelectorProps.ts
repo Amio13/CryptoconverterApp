@@ -8,4 +8,5 @@ export interface CurrencySelectProps {
     setID: SetIDFunction;
     coinList: CoinListItem[];
     isLoading: boolean;
+    className?: string;
 }

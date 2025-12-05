@@ -11,22 +11,20 @@ export default function App() {
 const { data: coinList = [], isLoading: isLoadingList, error: listError } = useCoinGeckoSearch();
   
 
-//context to persist 
  const { amount, setAmount, fromCurrency, setFromCurrency, toCurrency, setToCurrency } = useConverter();
 
-  // Selected IDs for rates 
+  
   const selectedIDs = useMemo(() => [fromCurrency, toCurrency], [fromCurrency, toCurrency]);
 
-  //  Fetch rates only if user has entered an amount 
+  
   const { usdRates, isLoadingRates, ratesError } = useCoinGeckoRates(selectedIDs,);
 
-  // Calculate conversion using your custom hook 
+  
   const convertedAmount = useConversion(amount, fromCurrency, toCurrency, usdRates);
 
   
 
 
-  //  Swap currencies 
   const handleSwap = useCallback(() => {
     setFromCurrency(toCurrency);
     setToCurrency(fromCurrency);
@@ -87,7 +85,7 @@ const displayRate = useMemo(() => {
             />
           </div>
 
-         
+{/*          
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4 relative">
             <CurrencySelect
               label="From"
@@ -112,7 +110,43 @@ const displayRate = useMemo(() => {
               coinList={coinList}
               isLoading={isLoadingList}
             />
-          </div>
+          </div> */}
+          <div className="flex flex-col  items-center justify-between gap-4 relative">
+
+  <div className="flex-1 min-w-[220px] max-w-full">
+    <CurrencySelect
+      label="From"
+      id={fromCurrency}
+      setID={setFromCurrency}
+      coinList={coinList}
+      isLoading={isLoadingList}
+      className="w-full"
+    />
+  </div>
+
+  <button
+    onClick={handleSwap}
+    className="p-3 mt-4 bg-yellow-500 dark:bg-yellow-400 hover:bg-yellow-300 dark:hover:bg-yellow-300 text-white dark:text-gray-900 rounded-full shadow-lg transition transform hover:scale-105 active:scale-95 border-4 border-white dark:border-gray-800"
+    aria-label="Swap Currencies"
+  >
+    ⇆
+  </button>
+
+  <div className="flex-1 min-w-[220px] max-w-full">
+    <CurrencySelect
+      label="To"
+      id={toCurrency}
+      setID={setToCurrency}
+      coinList={coinList}
+      isLoading={isLoadingList}
+      className="w-full"
+    />
+  </div>
+
+</div>
+
+
+
         </div>
 
         
@@ -125,7 +159,7 @@ const displayRate = useMemo(() => {
               </div>
               <div className="mt-2 flex items-baseline space-x-2">
                 <span className="text-4xl font-extrabold text-yellow-800 dark:text-yellow-400 font-mono">
-                  {convertedAmount.toFixed(8).replace(/\.?0+$/, "")}
+                  {convertedAmount.toFixed(5).replace(/\.?0+$/, "")}
                 </span>
                 <span className="text-2xl font-bold text-yellow-600 dark:text-yellow-300">{toSymbol}</span>
                     </div>
